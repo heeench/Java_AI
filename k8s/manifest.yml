@@ -32,7 +32,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: sentiment
+    app: sentiment-app    # исправлено
   ports:
     - protocol: TCP
       port: 80
@@ -46,7 +46,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: sentiment-deployment
+    name: sentiment-app   # исправлено
   minReplicas: 2
   maxReplicas: 5
   metrics:
