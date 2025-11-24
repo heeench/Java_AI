@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sentiment-deployment
+  name: sentiment-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: sentiment
+      app: sentiment-app
   template:
     metadata:
       labels:
-        app: sentiment
+        app: sentiment-app
     spec:
       containers:
-        - name: sentiment
-          image: sentiment-api:boot
+        - name: sentiment-app
+          image: sentiment-app:1.0
           ports:
             - containerPort: 8080
 ---
