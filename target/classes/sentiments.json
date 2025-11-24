@@ -1,0 +1,5 @@
+{
+  "positive": ["happy", "good", "great", "awesome"],
+  "negative": ["sad", "bad", "terrible", "horrible"],
+  "neutral": ["ok", "fine", "average"]
+}
