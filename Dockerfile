@@ -1,16 +1,11 @@
-FROM maven:3.9.6-eclipse-temurin-21 AS build
+# Dockerfile
+FROM eclipse-temurin:17-jdk
+
 WORKDIR /app
 
-COPY pom.xml .
-RUN mvn -q -e -B dependency:go-offline
+COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
 
-COPY src ./src
-RUN mvn -q -e -B package -DskipTests
+# Опционально можно ограничить память JVM
+ENV JAVA_OPTS="-Xmx512m -Xms256m"
 
-FROM eclipse-temurin:21-jre-alpine
-WORKDIR /app
-
-COPY --from=build /app/target/*.jar app.jar
-
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
